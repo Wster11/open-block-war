@@ -17,7 +17,7 @@ export class Paid {
         name: "KeJun",
         id: 1439885,
         gameName: null,
-        defaultTheme: "sevenKingDom7",
+        defaultTheme: "default",
         themes: [
           "default",
           "fiveColor",

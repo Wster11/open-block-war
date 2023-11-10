@@ -5,8 +5,17 @@ import GameCard from "./Components/GameCard";
 import LeftSlider from "./Components/LeftSlider";
 import { Result } from "./Components/Result";
 import RightSlider from "./Components/RightSlider";
+import { useEffect } from "react";
+import conn from "../IM/init";
 
 export default function App() {
+  useEffect(() => {
+    conn.open({
+      user: "st66",
+      pwd: "123"
+    });
+  }, []);
+
   return (
     <>
       <Result></Result>
@@ -14,13 +23,13 @@ export default function App() {
       <Box
         sx={{
           boxSizing: "border-box",
-          height: "100vh",
+          height: "100vh"
         }}
       >
         <Grid
           container
           columns={{
-            xs: 96,
+            xs: 96
           }}
         >
           <Grid item xs={21}>

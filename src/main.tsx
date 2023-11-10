@@ -12,15 +12,15 @@ import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
 const persistor = persistStore(store);
 
-import { Buffer } from 'buffer'
-globalThis.Buffer = Buffer
+import { Buffer } from "buffer";
+globalThis.Buffer = Buffer;
 
 const App = () => {
   return <Suspense fallback={<p>Loading...</p>}>{useRoutes(routes)}</Suspense>;
 };
 
 ReactDOM.createRoot(document.getElementById("app")!).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Router>
@@ -28,5 +28,5 @@ ReactDOM.createRoot(document.getElementById("app")!).render(
         </Router>
       </PersistGate>
     </Provider>
-  </React.StrictMode>
+  // </React.StrictMode>
 );

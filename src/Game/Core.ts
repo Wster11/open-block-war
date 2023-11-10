@@ -5,8 +5,6 @@ import Map from "../Components/Map";
 import { MessageToast } from "../Components/MessageToast";
 import Player from "../Components/Player";
 import Team from "../Components/Team";
-import BilibiliLive from "../Live/Bilibili";
-import DouyuLive from "../Live/Douyu";
 import { store } from "../store";
 import { ConfigState } from "../store/configSlice";
 import { setTeams, updateTeams, setWinTeam } from "../store/rootSlice";
@@ -16,7 +14,6 @@ export default class Core {
   map: Map | undefined;
   config: ConfigState | undefined;
   teams: Team[] = [];
-  live: BilibiliLive | DouyuLive;
   isGameOver = false;
   toast: MessageToast | undefined;
 
@@ -25,14 +22,7 @@ export default class Core {
   time: GameTime | undefined;
   cardController: CardController | undefined;
 
-  constructor(public game: Phaser.Game, public scene: Phaser.Scene) {
-    const config = store.getState().config;
-    if (config.liveType === "bilibili") {
-      this.live = new BilibiliLive(store.getState().config.liveId);
-    } else {
-      this.live = new DouyuLive(store.getState().config.liveId);
-    }
-  }
+  constructor(public game: Phaser.Game, public scene: Phaser.Scene) {}
 
   clearUp() {
     this.isGameOver = false;
@@ -89,11 +79,11 @@ export default class Core {
       text: this.scene.add.text(0, 0, "", {
         fontSize: "30px",
         stroke: "#000",
-        strokeThickness: 5,
+        strokeThickness: 5
       }),
       duration: {
-        hold: 1000,
-      },
+        hold: 1000
+      }
     }).setDepth(Core.TOAST_DEPTH);
     this.time = new GameTime(this.scene);
     this.asyncTeamsToStore();
@@ -105,7 +95,7 @@ export default class Core {
       callback: () => {
         store.dispatch(updateTeams());
       },
-      loop: true,
+      loop: true
     });
   }
 
